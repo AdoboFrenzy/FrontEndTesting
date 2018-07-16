@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Foo from "./foo"
 
 class Counter extends Component {
     constructor(props) {
@@ -9,10 +10,19 @@ class Counter extends Component {
 
     add1() {
         this.setState(state => {
-            return {
-                count: state.count + 1
-            }
+            return ({
+                    count: state.count + 1
+                })
         })
+    }
+
+    makeFoo() {
+        let returnArr = [];
+        for (let i=0; i < this.state.count; i++) {
+            returnArr.push(<Foo key={i} />)
+        }
+
+        return returnArr;
     }
 
     render() {
@@ -20,7 +30,8 @@ class Counter extends Component {
         return (
             <div>
                 <p> count: {this.state.count} </p>
-                <button onClick={this.add1}>  </button>
+                <button className="add1" onClick={this.add1}>  </button>
+                {this.makeFoo()}
             </div>
 
         )
